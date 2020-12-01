@@ -62,7 +62,7 @@ pipeline {
         }
 
     stage ('Deploy To QA'){
-        input message "Do you want to proceed for production deployment?",submitter: 'nouman'
+        input message "Do you want to proceed for production deployment?",submitter: "nouman"
             steps {
                         sh 'echo "Deploy into Prod"'
 
