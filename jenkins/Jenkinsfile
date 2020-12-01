@@ -60,21 +60,17 @@ pipeline {
                 )
             }
         }
-    //     stage ('pull artifact') {
-    //     steps{
-    //         rtDownload (
-    //         serverId: "jenkins-artifactory",
-    //         spec: """{
-    //             "files": [
-    //                 {
-    //                 "pattern": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
-    //                 "target": "app/"
-    //                 }
-    //             ]
-    //         }"""
-    //     )
-    //     }
-    // }
+
+    stage ('Deploy To QA'){
+        input{
+            message "Do you want to proceed for production deployment?"
+        }
+            steps {
+                        sh 'echo "Deploy into Prod"'
+
+                    }
+                }
+  }
    }
 }
   
