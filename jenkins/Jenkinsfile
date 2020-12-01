@@ -23,12 +23,12 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
-            steps {
-                sh 'sudo chmod a+x jenkins/scripts/deliver.sh'
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
+        // stage('Deliver') {
+        //     steps {
+        //         sh 'sudo chmod a+x jenkins/scripts/deliver.sh'
+        //         sh './jenkins/scripts/deliver.sh'
+        //     }
+        // }
         stage('Test Path') {
             steps {
                 sh 'pwd'
