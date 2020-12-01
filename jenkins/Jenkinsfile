@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven'
+        jdk 'jdk'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+        stage('Test Path') {
+            steps {
+                sh 'pwd'
+                sh 'ls target/'
+            }
+        }
+        stage ('Publish Artifacts') {
+        steps {
+            rtUpload (
+                buildName: JOB_NAME,
+                buildNumber: BUILD_NUMBER,
+                serverId: "jenkins-artifactory", // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
+                spec: """{
+                            "files": [
+                                {
+                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
+                                    "target": "wajahat/my-app-1.0-SNAPSHOT.jar",
+                                    "recursive": "false"
+                                }
+                            ]
+                    }"""   
+                )
+        }
+    }
+        stage ('pull artifact') {
+        steps{
+            rtDownload (
+            serverId: "jenkins-artifactory",
+            spec: """{
+                "files": [
+                    {
+                    "pattern": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
+                    "target": "app/"
+                    }
+                ]
+            }"""
+        )
+        }
+    }
+ }
+}
