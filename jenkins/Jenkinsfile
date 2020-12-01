@@ -41,28 +41,29 @@ pipeline {
                             "files": [
                                 {
                                     "pattern": "target/my-app-1.0-SNAPSHOT.jar",
-                                    "target": "wajahat/my-app-1.0-SNAPSHOT.jar",
+                                    "target": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
                                     "recursive": "false"
                                 }
                             ]
                     }"""   
                 )
         }
-    }
-        stage ('pull artifact') {
-        steps{
-            rtDownload (
-            serverId: "jenkins-artifactory",
-            spec: """{
-                "files": [
-                    {
-                    "pattern": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
-                    "target": "app/"
-                    }
-                ]
-            }"""
-        )
-        }
-    }
- }
+     } 
+    //     stage ('pull artifact') {
+    //     steps{
+    //         rtDownload (
+    //         serverId: "jenkins-artifactory",
+    //         spec: """{
+    //             "files": [
+    //                 {
+    //                 "pattern": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
+    //                 "target": "app/"
+    //                 }
+    //             ]
+    //         }"""
+    //     )
+    //     }
+    // }
+   }
 }
+  
