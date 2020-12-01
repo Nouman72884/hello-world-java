@@ -72,7 +72,7 @@ pipeline {
                 }
     stage ('Trigger other pipeline') {
         steps {
-            build job: 'Pipeline java-hello-world-approved'
+            build job: 'java-hello-world-approved'
             }
     }
   }
