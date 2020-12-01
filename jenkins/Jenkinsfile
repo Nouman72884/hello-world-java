@@ -62,13 +62,13 @@ pipeline {
         }
 
     stage ('Deploy To QA'){
-        {
-        input message "Do you want to proceed for production deployment?",submitter: "nouman"
-        }
-            // steps {
-            //             sh 'echo "Deploy into Prod"'
+        input {
+            message "Do you want to proceed for production deployment?" , submitter: 'nouman'
+        } 
+            steps {
+                        sh 'echo "Deploy into Prod"'
 
-            //         }
+                    }
                 }
     stage ('Trigger other pipeline') {
         steps {
