@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        BUILD_NUM = ''
+    }
     agent any
     tools {
         maven 'maven'
