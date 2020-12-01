@@ -25,6 +25,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'sudo chmod a+x jenkins/scripts/deliver.sh'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
@@ -43,8 +44,8 @@ pipeline {
                 spec: """{
                             "files": [
                                 {
-                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
-                                    "target": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
+                                    "pattern": "target/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
+                                    "target": "docker-eurus/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
                                     "recursive": "false"
                                 }
                             ]
