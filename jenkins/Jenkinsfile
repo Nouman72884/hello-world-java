@@ -1,7 +1,7 @@
 pipeline {
-    // environment {
-    //     BUILD_NUM = ''
-    // }
+    environment {
+        BUILD_NUM = ''
+    }
     agent any
     tools {
         maven 'maven'
@@ -53,6 +53,13 @@ pipeline {
                 )
         }
      } 
+     stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "jenkins-artifactory"
+                )
+            }
+        }
     //     stage ('pull artifact') {
     //     steps{
     //         rtDownload (
