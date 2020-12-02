@@ -48,8 +48,8 @@ pipeline {
                 spec: """{
                             "files": [
                                 {
-                                    "pattern": "target/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
-                                    "target": "docker-eurus/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
+                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
+                                    "target": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
                                     "recursive": "false"
                                 }
                             ]
@@ -71,7 +71,7 @@ pipeline {
             spec: """{
                 "files": [
                     {
-                    "pattern": "docker-eurus/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
+                    "pattern": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
                     "target": "app/"
                     }
                 ]
