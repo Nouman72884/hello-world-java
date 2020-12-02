@@ -79,45 +79,51 @@ pipeline {
         )
         }
     }
-     stage('transfer artifacts') {
-                    steps {
-                          sshPublisher(
-                          publishers:
-                          [sshPublisherDesc
-                          (configName: 'ubuntu',
-                           transfers: [sshTransfer(
-                           excludes: '',
-                           execCommand: 'cd /tmp/tmp/jenkins/scripts;sudo chmod a+x deliver.sh;sudo ./deliver.sh ',
-                           execTimeout: 350000,
-                           flatten: false,
-                           makeEmptyDirs: true,
-                           noDefaultExcludes: false,
-                           patternSeparator: '[, ]+',
-                           remoteDirectory: '/tmp',
-                           remoteDirectorySDF: false,
-                           removePrefix: '', sourceFiles: '**/*')],
-                           usePromotionTimestamp: false,
-                           useWorkspaceInPromotion: false,
-                           verbose: true)])
-                          }
-              }
+    stage ('copy file to remote server') {
+            steps {
+                sh 'scp -v -o StrictHostKeyChecking=no  -i /var/jenkins_home/nouman_pk.pem app/* ubuntu@100.26.251.87:/home/ubuntu/'
+                sh 'ls'
+            }
+        }
+    //  stage('transfer artifacts') {
+    //                 steps {
+    //                       sshPublisher(
+    //                       publishers:
+    //                       [sshPublisherDesc
+    //                       (configName: 'ubuntu',
+    //                        transfers: [sshTransfer(
+    //                        excludes: '',
+    //                        execCommand: 'cd /tmp/tmp/jenkins/scripts;sudo chmod a+x deliver.sh;sudo ./deliver.sh ',
+    //                        execTimeout: 350000,
+    //                        flatten: false,
+    //                        makeEmptyDirs: true,
+    //                        noDefaultExcludes: false,
+    //                        patternSeparator: '[, ]+',
+    //                        remoteDirectory: '/tmp',
+    //                        remoteDirectorySDF: false,
+    //                        removePrefix: '', sourceFiles: '**/*')],
+    //                        usePromotionTimestamp: false,
+    //                        useWorkspaceInPromotion: false,
+    //                        verbose: true)])
+    //                       }
+    //           }
     //  stage ('slack notification') {
     //      steps {
     //          slackSend "Build waiting for approval - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
     //      }
     //  }
-     stage('Approval') {
-            steps {
-                script {
-                    slackSend channel: '#slack-alerts', 
-                    message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-                    mail (to: 'n72884@gmail.com',
-                    subject: "Job '${env.JOB_BASE_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
-                    body: "Please go to console output of ${env.BUILD_URL} to approve or Reject.");
-                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'nouman'
-                }
-            }
-        }
+    //  stage('Approval') {
+    //         steps {
+    //             script {
+    //                 slackSend channel: '#slack-alerts', 
+    //                 message: "${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+    //                 mail (to: 'n72884@gmail.com',
+    //                 subject: "Job '${env.JOB_BASE_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
+    //                 body: "Please go to console output of ${env.BUILD_URL} to approve or Reject.");
+    //                 def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'nouman'
+    //             }
+    //         }
+    //     }
     // stage ('Deploy To QA'){
     //     input
     //         {
