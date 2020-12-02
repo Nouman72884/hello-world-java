@@ -83,7 +83,7 @@ pipeline {
                           (configName: 'ubuntu',
                            transfers: [sshTransfer(
                            excludes: '',
-                           execCommand: 'cd /tmp/tmp;sudo ./deliver.sh ',
+                           execCommand: 'cd /tmp/tmp/jenkins/scripts;sudo chmod a+x deliver.sh;sudo ./deliver.sh ',
                            execTimeout: 350000,
                            flatten: false,
                            makeEmptyDirs: true,
