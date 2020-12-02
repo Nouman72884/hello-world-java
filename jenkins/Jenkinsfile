@@ -68,7 +68,10 @@ pipeline {
     //         }
     //     }
     stage ('Deploy To QA'){
-        input message "Do you want to proceed for production deployment?"
+        input
+            {
+                message "Do you want to proceed for production deployment?"
+            } 
             steps {
                         sh 'echo "Deploy into Prod"'
 
