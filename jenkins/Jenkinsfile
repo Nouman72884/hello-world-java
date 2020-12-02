@@ -60,6 +60,43 @@ pipeline {
                 )
             }
         }
+     stage ('pull artifact') {
+        steps{
+            rtDownload (
+            serverId: "jenkins-artifactory",
+            spec: """{
+                "files": [
+                    {
+                    "pattern": "docker-eurus/spring-boot-hello-world-1.0.0-SNAPSHOT.jar",
+                    "target": "app/"
+                    }
+                ]
+            }"""
+        )
+        }
+    }
+     stage('transfer artifacts') {
+                    steps {
+                          sshPublisher(
+                          publishers:
+                          [sshPublisherDesc
+                          (configName: 'ubuntu',
+                           transfers: [sshTransfer(
+                           excludes: '',
+                           execCommand: 'cd /tmp/tmp;sudo ./deliver.sh ',
+                           execTimeout: 350000,
+                           flatten: false,
+                           makeEmptyDirs: true,
+                           noDefaultExcludes: false,
+                           patternSeparator: '[, ]+',
+                           remoteDirectory: '/tmp',
+                           remoteDirectorySDF: false,
+                           removePrefix: '', sourceFiles: '**/*')],
+                           usePromotionTimestamp: false,
+                           useWorkspaceInPromotion: false,
+                           verbose: true)])
+                          }
+              }
     //  stage ('slack notification') {
     //      steps {
     //          slackSend "Build waiting for approval - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
