@@ -27,8 +27,8 @@ pipeline {
             steps {
                 script {
                 sh "chmod a+x jenkins/scripts/deploy.sh"
-                sh "echo "permissions""
-                sh "./jenkins/scripts/deliver.sh"
+                sh "echo 'chmod successful' "
+                sh "./jenkins/scripts/deploy.sh"
             }
         }
         }
