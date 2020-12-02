@@ -63,7 +63,7 @@ pipeline {
      stage('Approval') {
             steps {
                 script {
-                    mail (to: 'noumansatti7@gmail.com.com',
+                    mail (to: 'n72884@gmail.com',
                     subject: "Job 'jenkins-pipeline'  is waiting for input",
                     body: "Please go to console output of  to approve or Reject.");
                     def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'nouman'
