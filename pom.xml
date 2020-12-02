@@ -214,7 +214,7 @@
 					<manifest>
 						<addClasspath>true</addClasspath>
 						<classpathPrefix>lib/</classpathPrefix>
-						<mainClass>com.mypackage.MainClass</mainClass>
+						<mainClass>com.package.MainClass</mainClass>
 					</manifest>
 					</archive>
 				</configuration>
