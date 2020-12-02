@@ -81,7 +81,7 @@ pipeline {
     }
     stage ('copy file to remote server') {
             steps {
-                sh 'scp -v -o StrictHostKeyChecking=no  -i /var/jenkins_home/nouman_pk.pem app/* ubuntu@100.26.251.87:.'
+                sh 'scp -v -o StrictHostKeyChecking=no  -i /var/jenkins_home/nouman_pk.pem app/* ubuntu@100.26.251.87:/var/jenkins_home/workspace/hello-world-java-Build'
                 sh 'ssh -i /var/jenkins_home/nouman_pk.pem ubuntu@100.26.251.87'
                 sh 'ls'
             }
