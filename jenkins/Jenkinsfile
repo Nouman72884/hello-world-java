@@ -63,7 +63,7 @@ pipeline {
      stage('Approval') {
             steps {
                 script {
-                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'nouman'
+                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?'
                 }
             }
         }
