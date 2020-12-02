@@ -10,7 +10,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn clean package'
+                //sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
@@ -23,15 +24,15 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
-            steps {
-                script {
-                sh "chmod a+x jenkins/scripts/deploy.sh"
-                sh "echo 'chmod successful' "
-                sh "./jenkins/scripts/deploy.sh"
-            }
-        }
-        }
+        // stage('Deliver') {
+        //     steps {
+        //         script {
+        //         sh "chmod a+x jenkins/scripts/deploy.sh"
+        //         sh "echo 'chmod successful' "
+        //         sh "./jenkins/scripts/deploy.sh"
+        //     }
+        // }
+        // }
         stage('Test Path') {
             steps {
                 sh 'pwd'
