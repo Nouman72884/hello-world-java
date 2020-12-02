@@ -128,11 +128,11 @@ pipeline {
 
     //                 }
     //             }
-    stage ('Trigger other pipeline') {
-        steps {
-            build job: 'java-hello-world-approved'
-            }
-    }
+    // stage ('Trigger other pipeline') {
+    //     steps {
+    //         build job: 'java-hello-world-approved'
+    //         }
+    // }
   }
 }
   
