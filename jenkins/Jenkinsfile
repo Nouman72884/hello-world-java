@@ -60,13 +60,20 @@ pipeline {
                 )
             }
         }
-     stage('Approval') {
+    //  stage('Approval') {
+    //         steps {
+    //             script {
+    //                 def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?', submitter: 'nouman'
+    //             }
+    //         }
+    //     }
+    stage ('Deploy To QA'){
+        input message "Do you want to proceed for production deployment?",submitter: "nouman" 
             steps {
-                script {
-                    input  message: "Do you want to proceed for production deployment?"
+                        sh 'echo "Deploy into Prod"'
+
+                    }
                 }
-            }
-        }
     stage ('Trigger other pipeline') {
         steps {
             build job: 'java-hello-world-approved'
