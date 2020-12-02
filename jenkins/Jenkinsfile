@@ -83,7 +83,7 @@ pipeline {
             steps {
                 sh 'scp -v -o StrictHostKeyChecking=no  -i /var/jenkins_home/nouman_pk.pem app/* ubuntu@100.26.251.87:/home/ubuntu/'
                 sh 'ssh -i /var/jenkins_home/nouman_pk.pem ubuntu@100.26.251.87'
-                sh 'ls'
+                sh 'pwd'
             }
         }
     //  stage('transfer artifacts') {
