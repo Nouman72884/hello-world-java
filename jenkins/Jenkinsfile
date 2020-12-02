@@ -63,19 +63,10 @@ pipeline {
      stage('Approval') {
             steps {
                 script {
-                    def deploymentDelay = input id: 'Deploy', message: 'Deploy to production?'
+                    def deploymentDelay = input id: 'Deploy', message: "Do you want to proceed for production deployment?"
                 }
             }
         }
-    // stage ('Deploy To QA'){
-    //     timeout(time: 2, unit: “HOURS”) {
-    //     input message "Do you want to proceed for production deployment?",submitter: "nouman" 
-    //     }
-    //         steps {
-    //                     sh 'echo "Deploy into Prod"'
-
-    //                 }
-    //             }
     stage ('Trigger other pipeline') {
         steps {
             build job: 'java-hello-world-approved'
