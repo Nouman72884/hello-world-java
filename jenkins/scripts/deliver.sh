@@ -7,8 +7,10 @@ echo "entering html"
 chmod 777 /var/www/html
 sudo cp /tmp/tmp/app/* /var/www/html
 ls
+echo "deploying app"
 cd  /var/www/html
 ls
 sudo rm index.html
+echo "ls inside"
 ls
 nohup java -jar spring-boot-hello-world-1.0.0-SNAPSHOT.jar > index.html 2>&1 &
