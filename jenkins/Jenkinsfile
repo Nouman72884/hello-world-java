@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean install -Dv=${BUILD_NUMBER} -Dartifactory.publish.artifacts=true -Dartifactory.publish.buildInfo=true'
-                //sh 'mvn clean package'
+                //sh 'mvn clean install -Dv=${BUILD_NUMBER} -Dartifactory.publish.artifacts=true -Dartifactory.publish.buildInfo=true'
+                sh 'mvn clean package'
                 //sh 'mvn -B -DskipTests clean package'
             }
         }
@@ -58,22 +58,22 @@ pipeline {
                 )
         }
      } 
-        stage ('upload Artifacts info') {
-            steps {
-            script{
-        def server = Artifactory.server 'jenkins-artifactory'
-        def uploadSpec = """{
-        "files": [
-            {
-            "pattern": "target/*.zip",
-            "target": "docker-maven/"
-            }
-        ]
-        }"""
-        server.upload(uploadSpec)
-     } 
-        }
-        }
+    //     stage ('upload Artifacts info') {
+    //         steps {
+    //         script{
+    //     def server = Artifactory.server 'jenkins-artifactory'
+    //     def uploadSpec = """{
+    //     "files": [
+    //         {
+    //         "pattern": "target/*.zip",
+    //         "target": "docker-maven/"
+    //         }
+    //     ]
+    //     }"""
+    //     server.upload(uploadSpec)
+    //  } 
+    //     }
+    //     }
      stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
