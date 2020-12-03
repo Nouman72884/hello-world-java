@@ -59,20 +59,16 @@ pipeline {
         }
      } 
         stage ('upload Artifacts info') {
-        steps {
-            uploadSpec (
-                serverId: "jenkins-artifactory", // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
-                spec: """{
-                            "files": [
-                                {
-                                    "pattern": "target/*",
-                                    "target": "docker-eurus/",
-                                    "recursive": "true"
-                                }
-                            ]
-                    }"""   
-                )
-        }
+        def server = Artifactory.server 'jenkins-artifactory'
+        def uploadSpec = """{
+        "files": [
+            {
+            "pattern": "bazinga/*froggy*.zip",
+            "target": "bazinga-repo/froggy-files/"
+            }
+        ]
+        }"""
+        server.upload(uploadSpec)
      } 
 
      stage ('Publish build info') {
