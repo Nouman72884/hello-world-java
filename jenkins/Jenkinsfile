@@ -50,7 +50,7 @@ pipeline {
                             "files": [
                                 {
                                     "pattern": "target/*",
-                                    "target": "docker-eurus/",
+                                    "target": "docker-maven/",
                                     "recursive": "true"
                                 }
                             ]
@@ -65,8 +65,8 @@ pipeline {
         def uploadSpec = """{
         "files": [
             {
-            "pattern": "bazinga/*froggy*.zip",
-            "target": "bazinga-repo/froggy-files/"
+            "pattern": "target/*.zip",
+            "target": "docker-maven/"
             }
         ]
         }"""
