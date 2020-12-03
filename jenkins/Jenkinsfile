@@ -49,7 +49,7 @@ pipeline {
                             "files": [
                                 {
                                     "pattern": "target/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
-                                    "target": "docker-eurus/my-app-1.0-SNAPSHOT.jar",
+                                    "target": "docker-eurus/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
                                     "recursive": "false"
                                 }
                             ]
