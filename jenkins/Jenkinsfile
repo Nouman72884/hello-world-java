@@ -59,6 +59,7 @@ pipeline {
         }
      } 
         stage ('upload Artifacts info') {
+            steps {
             script{
         def server = Artifactory.server 'jenkins-artifactory'
         def uploadSpec = """{
@@ -71,6 +72,7 @@ pipeline {
         }"""
         server.upload(uploadSpec)
      } 
+        }
         }
      stage ('Publish build info') {
             steps {
