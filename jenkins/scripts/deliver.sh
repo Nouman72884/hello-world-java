@@ -13,4 +13,4 @@ ls
 sudo rm index.html
 echo "ls inside"
 ls
-nohup java -jar my-app-1.0-SNAPSHOT.107.jar > index.html 2>&1 &
+nohup java -jar my-app-1.0-SNAPSHOT.110.jar > index.html 2>&1 &
