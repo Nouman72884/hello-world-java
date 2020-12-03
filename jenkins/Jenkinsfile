@@ -49,8 +49,8 @@ pipeline {
                 spec: """{
                             "files": [
                                 {
-                                    "pattern": "target/*",
-                                    "target": "docker-maven/",
+                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
+                                    "target": "docker-maven/my-app-1.0-SNAPSHOT_test.jar",
                                     "recursive": "true"
                                 }
                             ]
