@@ -51,7 +51,7 @@ pipeline {
                                 {
                                     "pattern": "target/*",
                                     "target": "docker-eurus/",
-                                    "recursive": "false"
+                                    "recursive": "true"
                                 }
                             ]
                     }"""   
