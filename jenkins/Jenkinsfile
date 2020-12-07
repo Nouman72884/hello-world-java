@@ -86,13 +86,13 @@ pipeline {
                 buildNumber: BUILD_NUMBER,
                 serverId: "jenkins-artifactory", // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
                 spec: """{
-                            "files": [
-                                {
-                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
-                                    "target": "docker-maven/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
-                                    "recursive": "true"
-                                }
-                            ]
+                        "files": [
+                            {
+                                "pattern": "target/my-app-1.0-SNAPSHOT.jar",
+                                "target": "docker-eurus/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
+                                "recursive": "true"
+                            }
+                        ]
                     }"""   
                 )
         }
