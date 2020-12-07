@@ -1,8 +1,7 @@
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
-        String determineRepoName() {
-        return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
+        
 }
     }
     agent any
@@ -30,6 +29,10 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                script {
+                    String determineRepoName() {
+        return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
+                }
                     sh 'echo "${gitUser}"'
                     sh 'echo "determineRepoName()"'
                 
