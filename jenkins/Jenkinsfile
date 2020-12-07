@@ -11,6 +11,8 @@ def repo() {
 def remote_url() {
     repositoryUrl = scm.userRemoteConfigs[0].url
     echo "${repositoryUrl}"
+    shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+    echo "${shortCommit}"
 }
 pipeline {
     environment {
