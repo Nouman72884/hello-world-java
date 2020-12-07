@@ -61,6 +61,16 @@ pipeline {
                 remote_url()
             }
         }
+        stage ('build name') {
+            steps {
+                buildName "${BUILD_NUMBER}"
+                addHtmlBadge(html: "${remote_url()}")
+                //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
+                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
+                //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
+                //buildDescription "${GIT_COMMIT}"
+            }
+        }
         // stage('Deliver') {
         //     steps {
         //         script {
@@ -82,16 +92,7 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-        stage ('build name') {
-            steps {
-                buildName "${BUILD_NUMBER}"
-                addHtmlBadge(html: "${remote_url()}")
-                //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
-                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
-                //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
-                //buildDescription "${GIT_COMMIT}"
-            }
-        }
+        
     // //     stage ('Publish Artifacts') {
     //     steps {
     //         rtUpload (
