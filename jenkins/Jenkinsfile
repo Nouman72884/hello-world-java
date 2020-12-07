@@ -12,10 +12,9 @@ def remote_url() {
     shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
     commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
-    echo "${commit_url}"
-    link="${commit_url}"
-    echo "<a href='${link}'>${shortCommit}</a>"
-    
+    url="${commit_url}"
+    link="<a href='${link}'>${shortCommit}</a>"
+    echo "link"
 }
 // def shortCommit() {
     
