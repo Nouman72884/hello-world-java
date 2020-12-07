@@ -43,7 +43,7 @@ pipeline {
         stage ('build number') {
             steps {
                 sh 'echo 'build number + git commit''
-                sh 'echo '${BUILD_NUMBER}-${env.GIT_COMMIT}''
+                sh 'echo '${BUILD_NUMBER}'+'-${env.GIT_COMMIT}''
             }
         }
     //     stage ('Publish Artifacts') {
