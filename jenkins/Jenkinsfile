@@ -63,7 +63,6 @@ pipeline {
         }
         stage ('build name') {
             steps {
-                buildName "${BUILD_NUMBER}"
                 addHtmlBadge(html: "${remote_url()}")
                 //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
                 //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
