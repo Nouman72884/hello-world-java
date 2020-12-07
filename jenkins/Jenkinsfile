@@ -9,20 +9,21 @@
 //       }
 
 def remote_url() {
+    shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
     commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
     echo "${commit_url}"
+    link=${commit_url}
+    echo "<a href='${link}'>${shortCommit}</a>"
     
 }
-def shortCommit() {
-    shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
-    echo "${shortCommit}"
-}
-def html_link() {
-    link=remote_url()
-    shortcommit=shortCommit()
-    echo "<a href='${link}'>${shortcommit}</a>"
-}
+// def shortCommit() {
+    
+//     echo "${shortCommit}"
+// }
+// def html_link() {
+    
+// }
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
@@ -58,7 +59,7 @@ pipeline {
         // }
         stage('git repo') {  
             steps{
-                html_link()
+                remote_url()
             }
         }
         // stage('Deliver') {
