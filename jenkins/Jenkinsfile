@@ -46,7 +46,7 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-        stage (build name) {
+        stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}"
                 buildDescription "Executed @ ${GIT_COMMIT}"
