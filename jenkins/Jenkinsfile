@@ -3,6 +3,10 @@ pipeline {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
         
       } 
+      def repo() {
+        def url="${GIT_URL}"
+        def reponame=url.split("/")[3]
+        echo ${reponame}
     agent any
     tools {
         maven 'maven'
@@ -26,16 +30,15 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
+        stage('gituser') {
             steps {
-                script {
-                    String determineRepoName() {
-        return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
-                }
-                }
                     sh 'echo "${gitUser}"'
-                    sh 'echo "determineRepoName()"'
+                    }
         }
+        stage('git repo') {
+            steps{
+                repo()
+            }
         }
         // stage('Deliver') {
         //     steps {
