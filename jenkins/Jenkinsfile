@@ -40,10 +40,16 @@ pipeline {
         //         sh 'ls target/'
         //     }
         // }
-        stage ('build number') {
+        // stage ('build number') {
+        //     steps {
+        //         sh 'echo "build number + git commit"'
+        //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
+        //     }
+        // }
+        stage (build name) {
             steps {
-                sh 'echo "build number + git commit"'
-                sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
+                buildName "${BUILD_NUMBER}"
+                buildDescription "Executed @ ${GIT_COMMIT}"
             }
         }
     //     stage ('Publish Artifacts') {
