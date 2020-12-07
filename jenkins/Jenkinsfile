@@ -49,7 +49,7 @@ pipeline {
         stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}"
-                addHtmlBadge(html: <a href='www.google.com'>View google Site</a>)
+                addHtmlBadge(html: "<a href='www.google.com'>View google Site</a>")
                 //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
                 //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
                 //buildDescription "${GIT_COMMIT}"
