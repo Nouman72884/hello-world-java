@@ -14,7 +14,7 @@ def remote_url() {
     commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
     url="${commit_url}"
     link="<a href='${link}'>${shortCommit}</a>"
-    echo "link"
+    return link
 }
 // def shortCommit() {
     
@@ -82,12 +82,12 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-    //     stage ('build name') {
-    //         steps {
-    //             buildName "${BUILD_NUMBER}"
-    //             addHtmlBadge(html: "${remote_url()}")
-    //             //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
-    //             //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
+        stage ('build name') {
+            steps {
+                buildName "${BUILD_NUMBER}"
+                addHtmlBadge(html: "${remote_url()}")
+                //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
+                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
     //             //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
     //             //buildDescription "${GIT_COMMIT}"
     //         }
