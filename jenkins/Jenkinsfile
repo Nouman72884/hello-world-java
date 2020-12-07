@@ -42,7 +42,6 @@ pipeline {
         stage('git repo') {
             steps{
                 sh 'url=${GIT_URL}'
-                sh 'echo $url'
             }
         }
         // stage('Deliver') {
