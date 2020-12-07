@@ -10,11 +10,18 @@
 
 def remote_url() {
     repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
-    echo "${repositoryUrl}"
     commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
     echo "${commit_url}"
+    
+}
+def shortCommit() {
     shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     echo "${shortCommit}"
+}
+def html_link() {
+    link=remote_url()
+    shortcommit=shortCommit()
+    echo "<a href='${link}'>${shortcommit}</a>"
 }
 pipeline {
     environment {
@@ -51,7 +58,7 @@ pipeline {
         // }
         stage('git repo') {  
             steps{
-                remote_url()
+                html_link()
             }
         }
         // stage('Deliver') {
@@ -75,16 +82,16 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-        stage ('build name') {
-            steps {
-                buildName "${BUILD_NUMBER}"
-                addHtmlBadge(html: "<a href='${commit_url}'>${shortCommit}</a>")
-                //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
-                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
-                //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
-                //buildDescription "${GIT_COMMIT}"
-            }
-        }
+        // stage ('build name') {
+        //     steps {
+        //         buildName "${BUILD_NUMBER}"
+        //         addHtmlBadge(html: "<a href='${commit_url}'>${shortCommit}</a>")
+        //         //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
+        //         //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
+        //         //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
+        //         //buildDescription "${GIT_COMMIT}"
+        //     }
+        // }
     //     stage ('Publish Artifacts') {
     //     steps {
     //         rtUpload (
