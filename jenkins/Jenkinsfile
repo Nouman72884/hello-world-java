@@ -27,7 +27,6 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                def url=$GIT_URL
                 script {
                     def url="$GIT_URL"
                     def repo=url.split("/")[0]
