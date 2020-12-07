@@ -11,7 +11,8 @@
 def remote_url() {
     repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
     echo "${repositoryUrl}"
-    echo "${repositoryUrl}/commit/${GIT_COMMIT}"
+    commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
+    echo "${commit_url}"
     shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     echo "${shortCommit}"
 }
@@ -74,16 +75,16 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-        // stage ('build name') {
-        //     steps {
-        //         buildName "${BUILD_NUMBER}"
-        //         addHtmlBadge(html: "<a href='https://github.com/Nouman72884/${reponame}/commit/${GIT_COMMIT}' target='_blank'>${GIT_COMMIT}</a>")
-        //         //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
-        //         //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
-        //         //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
-        //         //buildDescription "${GIT_COMMIT}"
-        //     }
-        // }
+        stage ('build name') {
+            steps {
+                buildName "${BUILD_NUMBER}"
+                addHtmlBadge(html: "<a href='${commit_url}'>${shortCommit}</a>")
+                //addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
+                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
+                //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
+                //buildDescription "${GIT_COMMIT}"
+            }
+        }
     //     stage ('Publish Artifacts') {
     //     steps {
     //         rtUpload (
