@@ -41,9 +41,10 @@ pipeline {
         //             }
         // }
         stage('git repo') {
+            def repositoryUrl = scm.userRemoteConfigs[0].url  
             steps{
                 script {
-                def repositoryUrl = scm.userRemoteConfigs[0].url  
+                
                 sh 'echo "$repositoryUrl"'
             }
         }
