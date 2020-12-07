@@ -1,13 +1,14 @@
+def repo() {
+        def url="${GIT_URL}"
+        def reponame=url.split("/")[3]
+        echo ${reponame}
+      }
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
         
       } 
-      def repo() {
-        def url="${GIT_URL}"
-        def reponame=url.split("/")[3]
-        echo ${reponame}
-      }
+      
     agent any
     tools {
         maven 'maven'
