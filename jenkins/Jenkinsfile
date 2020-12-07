@@ -25,6 +25,17 @@ pipeline {
                 }
             }
         }
+        stage('Deliver') {
+            steps {
+                def url=$GIT_URL
+                script {
+                    def url="$GIT_URL"
+                    def repo=url.split("/")[0]
+                    sh 'echo "$url"'
+                        }
+            }
+        }
+        }
         // stage('Deliver') {
         //     steps {
         //         script {
@@ -46,16 +57,16 @@ pipeline {
         //         sh 'echo "${BUILD_NUMBER}-${GIT_COMMIT}"'
         //     }
         // }
-        stage ('build name') {
-            steps {
-                buildName "${BUILD_NUMBER}"
-                //addHtmlBadge(html: "<a href='https://github.com/Nouman72884/hello-world-java/commit/${GIT_COMMIT}' target='_blank'>${GIT_COMMIT}</a>")
-                addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
-                //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
-                //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
-                //buildDescription "${GIT_COMMIT}"
-            }
-        }
+        // stage ('build name') {
+        //     steps {
+        //         buildName "${BUILD_NUMBER}"
+        //         //addHtmlBadge(html: "<a href='https://github.com/Nouman72884/hello-world-java/commit/${GIT_COMMIT}' target='_blank'>${GIT_COMMIT}</a>")
+        //         addHtmlBadge(html: "<a href='$GIT_URL'>${GIT_COMMIT}</a>")
+        //         //createSummary icon:'package.png', text: "<a href='www.google.com'>View google Site</a>"
+        //         //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
+        //         //buildDescription "${GIT_COMMIT}"
+        //     }
+        // }
     //     stage ('Publish Artifacts') {
     //     steps {
     //         rtUpload (
