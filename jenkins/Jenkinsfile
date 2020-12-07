@@ -42,7 +42,7 @@ pipeline {
         }
         stage('git repo') {
             steps{
-                determineRepoName()
+                echo 'determineRepoName()'
             }
         }
         // stage('Deliver') {
