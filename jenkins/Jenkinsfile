@@ -24,9 +24,9 @@ def remote_url() {
     
 // }
 pipeline {
-    environment {
-        gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
-      } 
+    // environment {
+    //     gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
+    //   } 
       
     agent any
     tools {
