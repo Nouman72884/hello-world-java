@@ -1,16 +1,17 @@
 // String determineRepoName() {
 //        return ${GIT_URL}.split("/")[0].last()
 // }
-def repo() {
-        url="${GIT_URL}"
-        reponame=url.split("/").last().replace(".git","")
-        echo "${reponame}"
+// def repo() {
+//         url="${GIT_URL}"
+//         reponame=url.split("/").last().replace(".git","")
+//         echo "${reponame}"
 
-      }
+//       }
 
 def remote_url() {
     repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
     echo "${repositoryUrl}"
+    echo "${repositoryUrl}/commit/${GIT_COMMIT}"
     shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     echo "${shortCommit}"
 }
