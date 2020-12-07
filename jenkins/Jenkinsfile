@@ -14,7 +14,7 @@ def remote_url() {
     commit_url="${repositoryUrl}/commit/${GIT_COMMIT}"
     url="${commit_url}"
     link="<a href='${link}'>${shortCommit}</a>"
-    return "$link"
+    return link
 }
 // def shortCommit() {
     
