@@ -34,30 +34,36 @@ pipeline {
         //     }
         // }
         // }
-        stage('Test Path') {
+        // stage('Test Path') {
+        //     steps {
+        //         sh 'pwd'
+        //         sh 'ls target/'
+        //     }
+        // }
+        stage ('build number') {
             steps {
-                sh 'pwd'
-                sh 'ls target/'
+                sh 'echo 'build number + git commit''
+                sh 'echo '${BUILD_NUMBER}-${env.GIT_COMMIT}''
             }
         }
-        stage ('Publish Artifacts') {
-        steps {
-            rtUpload (
-                buildName: JOB_NAME,
-                buildNumber: BUILD_NUMBER,
-                serverId: "jenkins-artifactory", // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
-                spec: """{
-                            "files": [
-                                {
-                                    "pattern": "target/my-app-1.0-SNAPSHOT.jar",
-                                    "target": "docker-maven/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
-                                    "recursive": "true"
-                                }
-                            ]
-                    }"""   
-                )
-        }
-     } 
+    //     stage ('Publish Artifacts') {
+    //     steps {
+    //         rtUpload (
+    //             buildName: JOB_NAME,
+    //             buildNumber: BUILD_NUMBER,
+    //             serverId: "jenkins-artifactory", // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
+    //             spec: """{
+    //                         "files": [
+    //                             {
+    //                                 "pattern": "target/my-app-1.0-SNAPSHOT.jar",
+    //                                 "target": "docker-maven/my-app-1.0-SNAPSHOT.${BUILD_NUMBER}.jar",
+    //                                 "recursive": "true"
+    //                             }
+    //                         ]
+    //                 }"""   
+    //             )
+    //     }
+    //  } 
     //     stage ('upload Artifacts info') {
     //         steps {
     //         script{
