@@ -7,6 +7,7 @@ pipeline {
         def url="${GIT_URL}"
         def reponame=url.split("/")[3]
         echo ${reponame}
+      }
     agent any
     tools {
         maven 'maven'
