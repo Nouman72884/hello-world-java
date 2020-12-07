@@ -43,8 +43,8 @@ pipeline {
         }
         stage('git repo') {
             steps{
-                repo()
-                sh 'echo "determineRepoName()"'
+
+                determineRepoName()
             }
         }
         // stage('Deliver') {
