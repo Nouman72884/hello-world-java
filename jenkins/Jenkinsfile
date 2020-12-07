@@ -49,7 +49,9 @@ pipeline {
         stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}-${GIT_COMMIT}"
-                buildDescription "${GIT_COMMIT}"
+                buildDescription "<a href="https://www.w3schools.com/">Visit W3Schools.com!</a>"
+"
+                //buildDescription "${GIT_COMMIT}"
             }
         }
     //     stage ('Publish Artifacts') {
