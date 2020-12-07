@@ -7,6 +7,11 @@ def repo() {
         echo "${reponame}"
 
       }
+
+def remote_url() {
+    repositoryUrl = scm.userRemoteConfigs[0].url
+    echo "${repositoryUrl}"
+}
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
@@ -40,14 +45,10 @@ pipeline {
         //             sh 'echo "${gitUser}"'
         //             }
         // }
-        stage('git repo') {
-            def repositoryUrl = scm.userRemoteConfigs[0].url  
+        stage('git repo') {  
             steps{
-                script {
-                
-                sh 'echo "$repositoryUrl"'
+                remote_url()
             }
-        }
         }
         // stage('Deliver') {
         //     steps {
