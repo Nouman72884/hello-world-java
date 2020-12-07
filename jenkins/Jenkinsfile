@@ -9,7 +9,7 @@ def repo() {
       }
 
 def remote_url() {
-    repositoryUrl = scm.userRemoteConfigs[0].url
+    repositoryUrl = scm.userRemoteConfigs[0].url.replace(".git","")
     echo "${repositoryUrl}"
     shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
     echo "${shortCommit}"
