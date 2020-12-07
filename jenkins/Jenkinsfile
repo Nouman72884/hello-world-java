@@ -1,11 +1,13 @@
-// String determineRepoName() {
-//        return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
-// }
-def repo() {
-        url="${GIT_URL}"
-        reponame=url.split("/")[3]
-        echo $reponame
-      }
+String determineRepoName() {
+       return ${GIT_URL}.split("/")[0].last()
+}
+// def repo() {
+//         url="${GIT_URL}"
+//         git_url=url.split("/")[3]
+//         echo $git_url
+//         repo=git_url.split("")
+
+//       }
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
@@ -42,7 +44,7 @@ pipeline {
         stage('git repo') {
             steps{
                 repo()
-                //sh 'url=${GIT_URL}'
+                sh 'echo "determineRepoName()"'
             }
         }
         // stage('Deliver') {
