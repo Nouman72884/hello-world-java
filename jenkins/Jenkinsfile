@@ -3,7 +3,7 @@
 // }
 def repo() {
         url="${GIT_URL}"
-        git_url=url.split("/").last()
+        git_url=url.split("/").last().replace(".git","")
         echo "${git_url}"
 
       }
