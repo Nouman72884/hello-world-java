@@ -48,7 +48,7 @@ pipeline {
         // }
         stage ('build name') {
             steps {
-                buildName "${BUILD_NUMBER}"
+                buildName "${BUILD_NUMBER}-${GIT_COMMIT}"
                 buildDescription "${GIT_COMMIT}"
             }
         }
