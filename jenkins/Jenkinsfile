@@ -49,7 +49,7 @@ pipeline {
         stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}"
-                buildDescription "Executed @ ${GIT_COMMIT}"
+                buildDescription "${GIT_COMMIT}"
             }
         }
     //     stage ('Publish Artifacts') {
