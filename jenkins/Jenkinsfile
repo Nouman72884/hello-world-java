@@ -49,7 +49,7 @@ pipeline {
         stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}-<a href='https://www.google.com/'>Visit google.com!</a>"
-                buildDescription "<a href='https://www.google.com/'>Visit google.com!</a>"
+                buildDescription "<html> <a href='https://www.google.com/'>Visit google.com!</a> </html>"
                 //buildDescription "${GIT_COMMIT}"
             }
         }
