@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        BUILD_NUM = ''
+        gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
     }
     agent any
     tools {
@@ -27,11 +27,8 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                script {
-                    def url="$GIT_URL"
-                    def repo=url.split("/")[0]
-                    sh 'echo "$url"'
-                        }
+                    sh 'echo "${gitUser}"'
+                
             }
         }
         // stage('Deliver') {
