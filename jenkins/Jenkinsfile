@@ -1,13 +1,12 @@
-String determineRepoName() {
-       return ${GIT_URL}.split("/")[0].last()
-}
-// def repo() {
-//         url="${GIT_URL}"
-//         git_url=url.split("/")[3]
-//         echo $git_url
-//         repo=git_url.split("")
+// String determineRepoName() {
+//        return ${GIT_URL}.split("/")[0].last()
+// }
+def repo() {
+        url="${GIT_URL}"
+        git_url=url.split("/").last()
+        return git_url
 
-//       }
+      }
 pipeline {
     environment {
         gitUser = sh(script: "git log -1 --pretty=format:'%an'", , returnStdout: true).trim()
@@ -43,8 +42,7 @@ pipeline {
         }
         stage('git repo') {
             steps{
-
-                determineRepoName()
+                repo()
             }
         }
         // stage('Deliver') {
