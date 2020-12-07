@@ -49,7 +49,7 @@ pipeline {
         stage ('build name') {
             steps {
                 buildName "${BUILD_NUMBER}"
-                createSummary icon:'package.png', text: "<a href='$GIT_COMMIT'>View Maven Site</a>"
+                //createSummary icon:'package.png', text: "<a href='${GIT_COMMIT}'>View Maven Site</a>"
                 //buildDescription "<html> <body> <a href='https://www.google.com/'>Visit google.com!</a> </body> </html>"
                 //buildDescription "${GIT_COMMIT}"
             }
