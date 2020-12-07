@@ -79,7 +79,7 @@ pipeline {
         //     }
         // }
         
-    //     stage ('Publish Artifacts') {
+        stage ('Publish Artifacts') {
         steps {
             rtUpload (
                 buildName: JOB_NAME,
